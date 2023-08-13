@@ -42,7 +42,12 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
@@ -57,7 +62,15 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    //Hilt
+    // Hilt
     implementation("com.google.dagger:hilt-android:2.44.2")
     kapt("com.google.dagger:hilt-compiler:2.44.2")
+
+    // Networking
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // Timber
+    implementation("com.jakewharton.timber:timber:5.0.1")
 }
