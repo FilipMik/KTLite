@@ -21,6 +21,7 @@ android {
 
     buildTypes {
         release {
+            buildConfigField("String", "AUTH_KEY", "\"FilMik23\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -28,17 +29,18 @@ android {
             )
         }
         debug {
+            buildConfigField("String", "AUTH_KEY", "\"FilMik23\"")
             isMinifyEnabled = false
             isShrinkResources = false
         }
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         viewBinding = true
@@ -70,6 +72,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Timber
     implementation("com.jakewharton.timber:timber:5.0.1")
