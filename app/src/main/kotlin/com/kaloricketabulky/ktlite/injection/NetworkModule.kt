@@ -13,7 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.jaxb.JaxbConverterFactory
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -52,7 +52,7 @@ class NetworkModule {
         return Retrofit.Builder()
             .baseUrl(Constants.Api.BASE_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(JaxbConverterFactory.create())
             .build()
             .create(KalorickeTabulkyApi::class.java)
     }
