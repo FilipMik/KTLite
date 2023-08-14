@@ -11,6 +11,7 @@ class App : Application() {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+            Timber.d("Timber planted")
         }
     }
 }

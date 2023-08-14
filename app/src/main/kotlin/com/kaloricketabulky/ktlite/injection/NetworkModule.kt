@@ -2,6 +2,8 @@ package com.kaloricketabulky.ktlite.injection
 
 import com.kaloricketabulky.ktlite.BuildConfig
 import com.kaloricketabulky.ktlite.data.remote.KalorickeTabulkyApi
+import com.kaloricketabulky.ktlite.data.repository.KTLiteRepositoryImpl
+import com.kaloricketabulky.ktlite.domain.repository.KTLiteRepository
 import com.kaloricketabulky.ktlite.tools.Constants
 import com.kaloricketabulky.ktlite.tools.Constants.Api.TIMEOUT_SECONDS
 import dagger.Module
@@ -24,7 +26,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideLoggingInterceptor(): Interceptor =
+    fun providesLoggingInterceptor(): Interceptor =
         HttpLoggingInterceptor { message ->
             Timber.tag("OkHttp").d(message)
         }.apply {
@@ -33,7 +35,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(
+    fun providesOkHttpClient(
         loggingInterceptor: Interceptor,
     ): OkHttpClient = OkHttpClient
         .Builder()
@@ -56,6 +58,11 @@ class NetworkModule {
             .build()
             .create(KalorickeTabulkyApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun providesKTLiteRespository(api: KalorickeTabulkyApi) : KTLiteRepository =
+        KTLiteRepositoryImpl(api)
 
     private fun authInterceptor(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()

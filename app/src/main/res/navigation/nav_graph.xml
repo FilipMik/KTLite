@@ -10,7 +10,7 @@
         android:id="@+id/FirstFragment"
         android:name="com.kaloricketabulky.ktlite.ui.foodlist.FoodListFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/food_list_fragment">
+        tools:layout="@layout/fragment_food_list">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -22,7 +22,7 @@
         android:id="@+id/SecondFragment"
         android:name="com.kaloricketabulky.ktlite.ui.fooddetail.FoodDetailFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/food_detail_fragment">
+        tools:layout="@layout/fragment_food_detail">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

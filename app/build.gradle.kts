@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
+    id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
 
@@ -45,6 +46,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        dataBinding = true
     }
 }
 
