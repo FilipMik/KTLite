@@ -15,10 +15,11 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.jaxb.JaxbConverterFactory
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -54,7 +55,7 @@ class NetworkModule {
         return Retrofit.Builder()
             .baseUrl(Constants.Api.BASE_URL)
             .client(client)
-            .addConverterFactory(JaxbConverterFactory.create())
+            .addConverterFactory(SimpleXmlConverterFactory.create())
             .build()
             .create(KalorickeTabulkyApi::class.java)
     }

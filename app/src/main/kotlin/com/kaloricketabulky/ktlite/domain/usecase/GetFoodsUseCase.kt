@@ -17,9 +17,18 @@ class GetFoodsUseCase @Inject constructor(
     operator fun invoke(): Flow<Result<List<Food>>> = flow {
         try {
             emit(Result.Loading())
-            val foodList = repository.getFoodList("a").map {
-                Food(it.guid, it.nazev, it.fotoThumb, Energy(it.energie.jednotka, it.energie.value))
+
+            val foodList = repository.getFoodListResponse("a").foods.map {
+                Food(
+                    it.guid,
+                    it.name,
+                    it.thumbnailPhoto,
+                    Energy(
+                        it.energy.energyUnit,
+                        it.energy.energyValue)
+                )
             }
+
             emit(Result.Success(foodList))
         } catch(exception: HttpException) {
             emit(Result.Error(exception.localizedMessage ?: "Unexcepted error"))

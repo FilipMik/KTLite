@@ -9,5 +9,5 @@ data class Food(
 
 data class Energy(
     val jednotka: String,
-    val value: Double
+    val value: String
 )

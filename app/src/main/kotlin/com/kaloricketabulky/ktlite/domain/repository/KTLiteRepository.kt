@@ -1,11 +1,11 @@
 package com.kaloricketabulky.ktlite.domain.repository
 
 import com.kaloricketabulky.ktlite.data.remote.dto.FoodDetailDto
-import com.kaloricketabulky.ktlite.data.remote.dto.FoodDto
+import com.kaloricketabulky.ktlite.data.remote.dto.SearchResponseDto
 
 interface KTLiteRepository {
 
-    suspend fun getFoodList(searchQuery: String) : List<FoodDto>
+    suspend fun getFoodListResponse(searchQuery: String) : SearchResponseDto
 
     suspend fun getFoodDetail(foodId: String) : FoodDetailDto
 }
