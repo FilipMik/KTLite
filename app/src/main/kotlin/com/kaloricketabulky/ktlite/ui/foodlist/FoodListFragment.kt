@@ -1,4 +1,4 @@
-package com.kaloricketabulky.ktlite.ui
+package com.kaloricketabulky.ktlite.ui.foodlist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,34 +7,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.kaloricketabulky.ktlite.R
-import com.kaloricketabulky.ktlite.databinding.FragmentFirstBinding
+import com.kaloricketabulky.ktlite.databinding.FoodListFragmentBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class FoodListFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FoodListFragmentBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FoodListFragmentBinding.inflate(inflater, container, false)
+        return binding?.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        binding?.let {
+            it.buttonFirst.setOnClickListener {
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            }
         }
     }
 
