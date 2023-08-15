@@ -54,7 +54,7 @@ data class FoodDetailDto(
     var stitkyMineraly: List<MineralTag> = mutableListOf()*/
 )
 
-data class FoodStatus(
+/*data class FoodStatus(
     @field:Attribute(name = "id_stav", required = false)
     var idStav: String = "",
 
@@ -76,7 +76,7 @@ data class FoodBrand(
 
     @field:Text(required = false)
     var znacka: String = ""
-)
+)*/
 
 data class NutritionalValues(
     @field:Element(name = "energie", required = false)

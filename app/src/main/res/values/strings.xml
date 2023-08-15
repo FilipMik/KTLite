@@ -9,4 +9,13 @@
     <string name="previous">Previous</string>
 
     <string name="food_search_hint">Vyhľadaj potravinu</string>
+
+    <string name="cukry">Cukry</string>
+    <string name="vlaknina">Vláknina</string>
+    <string name="nasytene">Nasýtené mastné kyseliny</string>
+    <string name="poly">Polynenasýtené mastné kyseliny</string>
+    <string name="mono">Mononenasýtené mastné kyseliny</string>
+    <string name="trans">Transmastné kyseliny</string>
+    <string name="cholesterol">Cholesterol</string>
+
 </resources>

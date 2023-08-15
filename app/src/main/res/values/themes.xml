@@ -1,9 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.KTLite" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimaryDark">@color/dark_three</item>
+        <item name="colorPrimary">@color/dark_grey</item>
+        <item name="colorAccent">@color/azure</item>
+        <item name="android:statusBarColor">@color/dark_three</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="colorControlHighlight">@color/gunmetal</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark"/>
 
     <style name="Theme.KTLite" parent="Base.Theme.KTLite"/>
 </resources>

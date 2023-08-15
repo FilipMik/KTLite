@@ -55,6 +55,7 @@ class FoodListFragment : Fragment(), FoodListView {
     override fun onFoodClick(food: Food) {
         val bundle = Bundle().apply {
             putString("guidFood", food.guid)
+            putString("foodName", food.name)
         }
         findNavController().navigate(R.id.action_ListFragment_to_DetailFragment, bundle)
     }
