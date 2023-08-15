@@ -1,6 +1,5 @@
 package com.kaloricketabulky.ktlite.domain.usecase
 
-import com.kaloricketabulky.ktlite.domain.model.Energy
 import com.kaloricketabulky.ktlite.domain.model.Food
 import com.kaloricketabulky.ktlite.domain.repository.KTLiteRepository
 import com.kaloricketabulky.ktlite.tools.Result
@@ -24,14 +23,15 @@ class GetFoodsUseCase @Inject constructor(
         try {
             emit(Result.Loading())
 
-            val foodList = repository.getFoodListResponse(query).foods.map {
+            val searchResponse = repository.getFoodListResponse(query)
+            val energyUnit = searchResponse.unit
+
+            val foodList = searchResponse.foods.map {
                 Food(
                     it.guid,
                     it.name,
                     it.thumbnailPhoto,
-                    Energy(
-                        it.energy.energyUnit,
-                        it.energy.energyValue)
+                    formatEnergy(it.energy.energyValue, energyUnit)
                 )
             }
 
@@ -41,5 +41,9 @@ class GetFoodsUseCase @Inject constructor(
         } catch(exception: IOException) {
             emit(Result.Error(exception.localizedMessage ?: "Network error"))
         }
+    }
+
+    private fun formatEnergy(energyValue: String, energyUnit: String) : String {
+        return String.format("%.2f", energyValue.toDouble()) + " " + energyUnit
     }
 }

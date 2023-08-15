@@ -4,12 +4,5 @@ data class Food(
     val guid: String,
     val name: String,
     val photoThumb: String?,
-    val energy: Energy
+    val energy: String
 )
-
-data class Energy(
-    val jednotka: String,
-    val value: String
-)
-
-fun Energy.toString() = "$value $jednotka"
