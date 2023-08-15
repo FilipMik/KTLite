@@ -1,4 +1,4 @@
-package com.kaloricketabulky.ktlite.ui.foodlist
+package com.kaloricketabulky.ktlite.ui.foodlist.adapter
 
 import dagger.Module
 import dagger.Provides
@@ -7,10 +7,10 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-object FoodListModule {
+object AdapterModule {
 
     @Provides
-    fun foodListView(fragment: FoodListFragment): FoodListView {
-        return fragment
+    fun provideFoodListAdapterFactory(): FoodListAdapterFactory {
+        return FoodListAdapterFactoryImpl()
     }
 }

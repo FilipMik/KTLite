@@ -12,6 +12,7 @@ import com.kaloricketabulky.ktlite.databinding.FragmentFoodListBinding
 import com.kaloricketabulky.ktlite.domain.model.Food
 import com.kaloricketabulky.ktlite.tools.observeNonNull
 import com.kaloricketabulky.ktlite.ui.foodlist.adapter.FoodListAdapter
+import com.kaloricketabulky.ktlite.ui.foodlist.adapter.FoodListAdapterFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -22,7 +23,11 @@ class FoodListFragment : Fragment(), FoodListView {
 
     private val foodListViewModel by viewModels<FoodListViewModel>()
 
-    @Inject lateinit var adapter: FoodListAdapter
+    @Inject lateinit var adapterFactory: FoodListAdapterFactory
+
+    private val adapter: FoodListAdapter by lazy {
+        adapterFactory.create(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

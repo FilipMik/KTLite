@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kaloricketabulky.ktlite.databinding.ListItemFoodBinding
 import com.kaloricketabulky.ktlite.domain.model.Food
+import com.kaloricketabulky.ktlite.ui.foodlist.FoodListView
 import javax.inject.Inject
 
-class FoodListAdapter @Inject constructor()
+class FoodListAdapter @Inject constructor(
+    private val foodListView: FoodListView
+)
     : ListAdapter<Food, FoodListAdapter.FoodViewHolder>(DiffUtilCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -25,6 +28,7 @@ class FoodListAdapter @Inject constructor()
 
         fun bind(item: Food) {
             binding.food = item
+            binding.view = foodListView
             binding.executePendingBindings()
         }
     }

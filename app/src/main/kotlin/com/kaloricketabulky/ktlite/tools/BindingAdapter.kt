@@ -1,5 +1,6 @@
 package com.kaloricketabulky.ktlite.tools
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -25,5 +26,11 @@ object BindingAdapters {
                     .into(view)
             }
         }
+    }
+
+    @BindingAdapter("onFoodItemClick")
+    @JvmStatic
+    fun setOnFoodItemClick(view: View, listener: View.OnClickListener) {
+        view.setOnClickListener(listener)
     }
 }

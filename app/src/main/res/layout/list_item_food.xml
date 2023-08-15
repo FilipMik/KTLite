@@ -24,7 +24,7 @@
         android:orientation="vertical"
         android:padding="@dimen/d4"
         android:clickable="true"
-        android:onClick="@{() -> view.onFoodClick(food)}">
+        app:onFoodItemClick="@{() -> view.onFoodClick(food)}">
 
         <ImageView
             android:id="@+id/food_thumbnail"
