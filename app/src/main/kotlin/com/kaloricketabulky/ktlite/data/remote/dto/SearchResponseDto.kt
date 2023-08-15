@@ -11,13 +11,13 @@ data class SearchResponseDto(
     @field:ElementList(inline = true, name = "potravina")
     var foods: MutableList<FoodDto> = mutableListOf(),
 
-    @field:Attribute(name = "q")
+    @field:Attribute(name = "q", required = false)
     var query: String = "",
 
     @field:Attribute(name = "jedn")
     var unit: String = "",
 
-    @field:Attribute(name = "cas_zpracovani")
+    @field:Attribute(name = "cas_zpracovani", required = false)
     var processingTime: String = ""
 )
 

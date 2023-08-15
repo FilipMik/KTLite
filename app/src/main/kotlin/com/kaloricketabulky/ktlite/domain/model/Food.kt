@@ -11,3 +11,5 @@ data class Energy(
     val jednotka: String,
     val value: String
 )
+
+fun Energy.toString() = "$value $jednotka"

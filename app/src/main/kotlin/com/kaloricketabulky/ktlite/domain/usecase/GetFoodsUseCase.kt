@@ -14,11 +14,17 @@ class GetFoodsUseCase @Inject constructor(
     private val repository: KTLiteRepository
 ) {
 
+    private var query: String = ""
+
+    fun init(query: String) = apply {
+        this.query = query
+    }
+
     operator fun invoke(): Flow<Result<List<Food>>> = flow {
         try {
             emit(Result.Loading())
 
-            val foodList = repository.getFoodListResponse("a").foods.map {
+            val foodList = repository.getFoodListResponse(query).foods.map {
                 Food(
                     it.guid,
                     it.name,

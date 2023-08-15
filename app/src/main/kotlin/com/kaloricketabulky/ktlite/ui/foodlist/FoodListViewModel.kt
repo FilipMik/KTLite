@@ -16,10 +16,11 @@ class FoodListViewModel @Inject constructor(
     private val getFoodsUseCase: GetFoodsUseCase
 ) : ViewModel() {
 
-    private val foodList: MutableLiveData<List<Food>> = MutableLiveData()
+    val foodList: MutableLiveData<List<Food>> = MutableLiveData()
+    val searchQuery: MutableLiveData<String> = MutableLiveData()
 
-    fun getFoodList() {
-        getFoodsUseCase().onEach { result ->
+    fun getFoodList(query: String) {
+        getFoodsUseCase.init(query).invoke().onEach { result ->
             when (result) {
                 is Result.Loading -> {
                     result

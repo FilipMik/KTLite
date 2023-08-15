@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="food"
+            type="com.kaloricketabulky.ktlite.domain.model.Food"/>
+
+        <variable
+            name="view"
+            type="com.kaloricketabulky.ktlite.ui.foodlist.FoodListView"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/d4"
+        android:clickable="true"
+        android:onClick="@{() -> view.onFoodClick(food)}">
+
+        <ImageView
+            android:id="@+id/food_thumbnail"
+            android:layout_width="@dimen/d12"
+            android:layout_height="@dimen/d12"
+            android:paddingEnd="@dimen/d3"
+            android:contentDescription="@{food.name}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:imageUrl="@{food.photoThumb}"/>
+
+        <TextView
+            android:id="@+id/food_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{food.name}"
+            app:layout_constraintStart_toEndOf="@id/food_thumbnail"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/food_energy"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Jalbko Golden Deliciou"/>
+
+        <TextView
+            android:id="@+id/food_energy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@{food.energy.toString()}"
+            app:layout_constraintStart_toEndOf="@id/food_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/food_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="120kcal 100g"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
