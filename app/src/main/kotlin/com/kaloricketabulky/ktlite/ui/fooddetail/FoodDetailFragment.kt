@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.kaloricketabulky.ktlite.databinding.FragmentFoodDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
+@AndroidEntryPoint
 class FoodDetailFragment : Fragment() {
 
     private var binding: FragmentFoodDetailBinding? = null
@@ -23,7 +23,13 @@ class FoodDetailFragment : Fragment() {
     ): View = FragmentFoodDetailBinding.inflate(inflater, container, false).apply {
         lifecycleOwner = viewLifecycleOwner
         viewModel = foodDetailViewModel
+        binding = this
     }.root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val args: FoodDetailFragmentArgs by navArgs()
+        foodDetailViewModel.loadFoodDetail(args.guidFood)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

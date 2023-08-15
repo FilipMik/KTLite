@@ -10,7 +10,6 @@ import dagger.hilt.components.SingletonComponent
 object FoodListModule {
 
     @Provides
-    fun foodListView(fragment: FoodListFragment): FoodListView {
-        return fragment
-    }
+    fun foodListFragment(fragment: FoodListFragment): FoodListView = fragment
+
 }

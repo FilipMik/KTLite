@@ -19,7 +19,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class FoodListFragment : Fragment(), FoodListView {
 
-    private var _binding: FragmentFoodListBinding? = null
+    private var binding: FragmentFoodListBinding? = null
 
     private val foodListViewModel by viewModels<FoodListViewModel>()
 
@@ -35,11 +35,11 @@ class FoodListFragment : Fragment(), FoodListView {
     ): View = FragmentFoodListBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = foodListViewModel
-            _binding = this
+            binding = this
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        _binding?.let {
+        binding?.let {
             it.foodListRecycler.adapter = adapter
         }
 
@@ -49,11 +49,14 @@ class FoodListFragment : Fragment(), FoodListView {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 
     override fun onFoodClick(food: Food) {
-        findNavController().navigate(R.id.action_ListFragment_to_DetailFragment)
+        val bundle = Bundle().apply {
+            putString("guidFood", food.guid)
+        }
+        findNavController().navigate(R.id.action_ListFragment_to_DetailFragment, bundle)
     }
 
     private fun observeListChange() {

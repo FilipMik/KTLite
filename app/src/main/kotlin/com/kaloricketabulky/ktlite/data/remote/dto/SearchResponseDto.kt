@@ -6,7 +6,7 @@ import org.simpleframework.xml.ElementList
 import org.simpleframework.xml.Root
 import org.simpleframework.xml.Text
 
-@Root(name = "search")
+@Root(name = "search", strict = false)
 data class SearchResponseDto(
     @field:ElementList(inline = true, name = "potravina")
     var foods: MutableList<FoodDto> = mutableListOf(),

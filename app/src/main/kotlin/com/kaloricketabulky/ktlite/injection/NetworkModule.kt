@@ -55,7 +55,7 @@ class NetworkModule {
         return Retrofit.Builder()
             .baseUrl(Constants.Api.BASE_URL)
             .client(client)
-            .addConverterFactory(SimpleXmlConverterFactory.create())
+            .addConverterFactory(SimpleXmlConverterFactory.createNonStrict())
             .build()
             .create(KalorickeTabulkyApi::class.java)
     }
