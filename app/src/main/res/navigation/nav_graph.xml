@@ -4,16 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/FoodListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/FoodListFragment"
         android:name="com.kaloricketabulky.ktlite.ui.foodlist.FoodListFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/food_list_fragment_label"
         tools:layout="@layout/fragment_food_list">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            android:id="@+id/action_ListFragment_to_DetailFragment"
             app:destination="@id/SecondFragment"/>
     </fragment>
 
@@ -21,11 +21,11 @@
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.kaloricketabulky.ktlite.ui.fooddetail.FoodDetailFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/food_detail_fragment_label"
         tools:layout="@layout/fragment_food_detail">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment"/>
+            android:id="@+id/action_DetailFragment_to_ListFragment"
+            app:destination="@id/FoodListFragment"/>
     </fragment>
 </navigation>

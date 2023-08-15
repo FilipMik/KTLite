@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.kaloricketabulky.ktlite.R
 import com.kaloricketabulky.ktlite.databinding.FragmentFoodListBinding
 import com.kaloricketabulky.ktlite.domain.model.Food
 import com.kaloricketabulky.ktlite.tools.observeNonNull
@@ -46,8 +48,7 @@ class FoodListFragment : Fragment(), FoodListView {
     }
 
     override fun onFoodClick(food: Food) {
-        food
-        //TODO navigate to food detail
+        findNavController().navigate(R.id.action_ListFragment_to_DetailFragment)
     }
 
     private fun observeListChange() {
