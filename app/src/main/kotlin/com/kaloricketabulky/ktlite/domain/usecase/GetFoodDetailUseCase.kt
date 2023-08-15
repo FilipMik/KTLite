@@ -1,6 +1,5 @@
 package com.kaloricketabulky.ktlite.domain.usecase
 
-import androidx.lifecycle.MutableLiveData
 import com.kaloricketabulky.ktlite.R
 import com.kaloricketabulky.ktlite.domain.model.FoodDetail
 import com.kaloricketabulky.ktlite.domain.model.Nutrient
@@ -10,6 +9,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okio.IOException
 import retrofit2.HttpException
+import java.math.BigDecimal
+import java.math.RoundingMode
 import javax.inject.Inject
 
 class GetFoodDetailUseCase @Inject constructor(
@@ -17,6 +18,7 @@ class GetFoodDetailUseCase @Inject constructor(
 ) {
 
     private var guidFood: String = ""
+    private val defaultMultiplier = 100
 
     fun init(guidFood: String) = apply {
         this.guidFood = guidFood
@@ -30,10 +32,10 @@ class GetFoodDetailUseCase @Inject constructor(
                 FoodDetail(
                     guidPotravina,
                     nazev,
-                    hodnoty.energie.hodnota + hodnoty.energie.jednotka,
-                    hodnoty.bilkoviny.hodnota,
-                    hodnoty.sacharidy.hodnota,
-                    hodnoty.tuky.hodnota,
+                    hodnoty.energie.hodnota.multiplyBy(defaultMultiplier) + hodnoty.energie.jednotka,
+                    hodnoty.bilkoviny.hodnota.multiplyBy(defaultMultiplier),
+                    hodnoty.sacharidy.hodnota.multiplyBy(defaultMultiplier),
+                    hodnoty.tuky.hodnota.multiplyBy(defaultMultiplier),
                     listOf(
                         // Cukry
                         // Vlaknina
@@ -70,5 +72,10 @@ class GetFoodDetailUseCase @Inject constructor(
         } catch(exception: IOException) {
             emit(Result.Error(exception.localizedMessage ?: "Network error"))
         }
+    }
+
+    private fun String.multiplyBy(multiplier: Int) : String {
+        val originalFloat = this.toFloat() * multiplier
+        return String.format("%.2f", originalFloat)
     }
 }

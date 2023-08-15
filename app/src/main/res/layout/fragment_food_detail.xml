@@ -21,15 +21,38 @@
             android:id="@+id/donut_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/d8"
-            android:paddingEnd="@dimen/d8"
+            android:paddingStart="@dimen/d10"
+            android:paddingEnd="@dimen/d10"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:donut_bgLineColor="@color/cloud"
             app:donut_gapWidth="0"
             app:donut_gapAngle="0"
-            app:donut_strokeWidth="20dp"/>
+            app:donut_strokeWidth="20dp"
+            app:donut_animationDuration="500"/>
+
+        <TextView
+            android:id="@+id/energy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.energyValue}"
+            android:textAppearance="@style/TextRegular.Black.30"
+            app:layout_constraintTop_toTopOf="@id/donut_view"
+            app:layout_constraintBottom_toBottomOf="@id/donut_view"
+            app:layout_constraintStart_toStartOf="@id/donut_view"
+            app:layout_constraintEnd_toEndOf="@id/donut_view"
+            tools:text="340kcal"/>
+
+        <TextView
+            android:id="@+id/energy_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hundred_grams"
+            app:layout_constraintTop_toBottomOf="@id/energy"
+            app:layout_constraintStart_toStartOf="@id/donut_view"
+            app:layout_constraintEnd_toEndOf="@id/donut_view"
+            tools:text="100g"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

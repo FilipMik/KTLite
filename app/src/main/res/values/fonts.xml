@@ -11,6 +11,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="TextRegular.Black.30">
+        <item name="android:textSize">30sp</item>
+    </style>
+
     <style name="TextRegular.Black.18">
         <item name="android:textSize">18sp</item>
     </style>

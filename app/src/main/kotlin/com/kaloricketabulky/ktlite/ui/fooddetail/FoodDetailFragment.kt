@@ -44,10 +44,10 @@ class FoodDetailFragment : Fragment() {
 
     private fun observeChanges() {
         foodDetailViewModel.apply {
-            donutSections.observeNonNull(viewLifecycleOwner) { donutSections ->
+            donutSectionsAndSumTuple.observeNonNull(viewLifecycleOwner) { tuple ->
                 binding?.let {
-                    it.donutView.cap = 1f
-                    it.donutView.submitData(donutSections)
+                    it.donutView.cap = tuple.sum
+                    it.donutView.submitData(tuple.donutSections)
                 }
             }
         }

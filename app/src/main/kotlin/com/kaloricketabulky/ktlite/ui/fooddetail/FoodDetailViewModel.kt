@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.futured.donut.DonutSection
+import com.kaloricketabulky.ktlite.domain.model.DonutSectionAndSumTuple
 import com.kaloricketabulky.ktlite.domain.model.FoodDetail
 import com.kaloricketabulky.ktlite.domain.usecase.GetFoodDetailUseCase
 import com.kaloricketabulky.ktlite.tools.Result
@@ -19,7 +20,7 @@ class FoodDetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     val energyValue = MutableLiveData<String>()
-    val donutSections = MutableLiveData<List<DonutSection>>()
+    val donutSectionsAndSumTuple = MutableLiveData<DonutSectionAndSumTuple>()
 
     fun loadFoodDetail(guidFood: String) {
         getFoodDetailUseCase.init(guidFood).invoke().onEach { result ->
@@ -29,7 +30,8 @@ class FoodDetailViewModel @Inject constructor(
                 }
                 is Result.Success -> {
                     result.data?.let {
-                        donutSections.value = createDonutSections(it)
+                        donutSectionsAndSumTuple.value = createDonutSectionAndSumTuple(it)
+                        energyValue.value = it.energy
                     }
                 }
                 is Result.Error -> {
@@ -39,7 +41,8 @@ class FoodDetailViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private fun createDonutSections(foodDetail: FoodDetail): List<DonutSection> = listOf(
+    private fun createDonutSectionAndSumTuple(foodDetail: FoodDetail): DonutSectionAndSumTuple {
+        val sectionList = listOf(
             DonutSection(
                 name = "proteins",
                 color = Color.parseColor("#00D5FF"),
@@ -56,4 +59,13 @@ class FoodDetailViewModel @Inject constructor(
                 amount = foodDetail.fat.toFloat()
             )
         )
+
+        var sum = 0f
+
+        sectionList.forEach {
+            sum += it.amount
+        }
+
+        return DonutSectionAndSumTuple(sectionList, sum)
+    }
 }
