@@ -12,11 +12,25 @@
             type="com.kaloricketabulky.ktlite.ui.fooddetail.FoodDetailViewModel"/>
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    </LinearLayout>
+        <app.futured.donut.DonutProgressView
+            android:id="@+id/donut_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/d8"
+            android:paddingEnd="@dimen/d8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:donut_bgLineColor="@color/cloud"
+            app:donut_gapWidth="0"
+            app:donut_gapAngle="0"
+            app:donut_strokeWidth="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

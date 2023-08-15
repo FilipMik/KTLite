@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.kaloricketabulky.ktlite.databinding.FragmentFoodDetailBinding
+import com.kaloricketabulky.ktlite.tools.observeNonNull
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,10 +33,23 @@ class FoodDetailFragment : Fragment() {
         foodDetailViewModel.loadFoodDetail(args.guidFood)
 
         (requireActivity() as AppCompatActivity).supportActionBar?.title = args.foodName
+
+        observeChanges()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    private fun observeChanges() {
+        foodDetailViewModel.apply {
+            donutSections.observeNonNull(viewLifecycleOwner) { donutSections ->
+                binding?.let {
+                    it.donutView.cap = 1f
+                    it.donutView.submitData(donutSections)
+                }
+            }
+        }
     }
 }

@@ -84,4 +84,7 @@ dependencies {
     // Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
     kapt("com.github.bumptech.glide:compiler:4.12.0")
+
+    // Donut
+    implementation("app.futured.donut:donut:2.2.3")
 }

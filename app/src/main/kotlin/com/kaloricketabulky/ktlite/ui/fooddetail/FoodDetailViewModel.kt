@@ -1,8 +1,10 @@
 package com.kaloricketabulky.ktlite.ui.fooddetail
 
+import android.graphics.Color
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.futured.donut.DonutSection
 import com.kaloricketabulky.ktlite.domain.model.FoodDetail
 import com.kaloricketabulky.ktlite.domain.usecase.GetFoodDetailUseCase
 import com.kaloricketabulky.ktlite.tools.Result
@@ -16,7 +18,8 @@ class FoodDetailViewModel @Inject constructor(
     private val getFoodDetailUseCase: GetFoodDetailUseCase
 ) : ViewModel() {
 
-    val foodDetailData: MutableLiveData<FoodDetail> = MutableLiveData()
+    val energyValue = MutableLiveData<String>()
+    val donutSections = MutableLiveData<List<DonutSection>>()
 
     fun loadFoodDetail(guidFood: String) {
         getFoodDetailUseCase.init(guidFood).invoke().onEach { result ->
@@ -26,7 +29,7 @@ class FoodDetailViewModel @Inject constructor(
                 }
                 is Result.Success -> {
                     result.data?.let {
-                        foodDetailData.value = it
+                        donutSections.value = createDonutSections(it)
                     }
                 }
                 is Result.Error -> {
@@ -35,4 +38,22 @@ class FoodDetailViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+
+    private fun createDonutSections(foodDetail: FoodDetail): List<DonutSection> = listOf(
+            DonutSection(
+                name = "proteins",
+                color = Color.parseColor("#00D5FF"),
+                amount = foodDetail.protein.toFloat()
+            ),
+            DonutSection(
+                name = "carbs",
+                color = Color.parseColor("#FBE81D"),
+                amount = foodDetail.carbs.toFloat()
+            ),
+            DonutSection(
+                name = "fats",
+                color = Color.parseColor("#FB1D32"),
+                amount = foodDetail.fat.toFloat()
+            )
+        )
 }
