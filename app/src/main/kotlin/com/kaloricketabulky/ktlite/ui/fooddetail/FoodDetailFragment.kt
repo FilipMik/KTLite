@@ -5,8 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.kaloricketabulky.ktlite.R
+import androidx.fragment.app.viewModels
 import com.kaloricketabulky.ktlite.databinding.FragmentFoodDetailBinding
 
 /**
@@ -14,29 +13,20 @@ import com.kaloricketabulky.ktlite.databinding.FragmentFoodDetailBinding
  */
 class FoodDetailFragment : Fragment() {
 
-    private var _binding: FragmentFoodDetailBinding? = null
-    private val binding get() = _binding
+    private var binding: FragmentFoodDetailBinding? = null
+
+    private val foodDetailViewModel by viewModels<FoodDetailViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentFoodDetailBinding.inflate(inflater, container, false)
-        return binding?.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding?.let {
-            it.buttonSecond.setOnClickListener {
-                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-            }
-        }
-    }
+    ): View = FragmentFoodDetailBinding.inflate(inflater, container, false).apply {
+        lifecycleOwner = viewLifecycleOwner
+        viewModel = foodDetailViewModel
+    }.root
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding = null
     }
 }
