@@ -41,6 +41,7 @@ class FoodListFragment : Fragment(), FoodListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding?.let {
             it.foodListRecycler.adapter = adapter
+            it.searchEditText.requestFocus()
         }
 
         observeSearchChange()
