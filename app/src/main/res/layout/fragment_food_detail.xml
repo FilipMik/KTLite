@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fooddetail.FoodDetailFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.kaloricketabulky.ktlite.ui.fooddetail.FoodDetailViewModel"/>
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <app.futured.donut.DonutProgressView
+                android:id="@+id/donut_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/d10"
+                android:paddingEnd="@dimen/d10"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:donut_bgLineColor="@color/cloud"
+                app:donut_gapWidth="30"
+                app:donut_gapAngle="90"
+                app:donut_strokeWidth="20dp"
+                app:donut_strokeCap="butt"
+                app:donut_animationDuration="500"/>
+
+            <TextView
+                android:id="@+id/energy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.energyValue}"
+                android:textAppearance="@style/TextRegular.Black.30"
+                app:layout_constraintTop_toTopOf="@id/donut_view"
+                app:layout_constraintBottom_toBottomOf="@id/donut_view"
+                app:layout_constraintStart_toStartOf="@id/donut_view"
+                app:layout_constraintEnd_toEndOf="@id/donut_view"
+                tools:text="340kcal"/>
+
+            <TextView
+                android:id="@+id/energy_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hundred_grams"
+                app:layout_constraintBottom_toBottomOf="@id/donut_view"
+                app:layout_constraintStart_toStartOf="@id/donut_view"
+                app:layout_constraintEnd_toEndOf="@id/donut_view"
+                android:paddingBottom="@dimen/d11"
+                tools:text="100g"/>
+
+            <View
+                android:id="@+id/donut_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey"
+                app:layout_constraintTop_toBottomOf="@id/donut_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/proteins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/formatted_gram(viewModel.proteins)}"
+                android:layout_marginTop="@dimen/d8"
+                android:textAppearance="@style/TextLight.Black.18"
+                app:layout_constraintTop_toBottomOf="@id/donut_divider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/fats"
+                tools:text="26g"/>
+
+            <TextView
+                android:id="@+id/fats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/formatted_gram(viewModel.fats)}"
+                android:textAppearance="@style/TextLight.Black.18"
+                app:layout_constraintStart_toEndOf="@id/proteins"
+                app:layout_constraintEnd_toStartOf="@id/carbs"
+                app:layout_constraintTop_toTopOf="@id/proteins"
+                tools:text="26g"/>
+
+            <TextView
+                android:id="@+id/carbs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/formatted_gram(viewModel.carbs)}"
+                android:textAppearance="@style/TextLight.Black.18"
+                android:animateLayoutChanges="true"
+                app:layout_constraintStart_toEndOf="@id/fats"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/proteins"
+                tools:text="26g"/>
+
+            <TextView
+                android:id="@+id/proteins_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="@{@string/formatted_percent(viewModel.proteinsPercent)}"
+                android:textAppearance="@style/TextRegular.Proteins.14"
+                app:layout_constraintStart_toStartOf="@id/proteins"
+                app:layout_constraintEnd_toEndOf="@id/proteins"
+                app:layout_constraintBottom_toTopOf="@id/proteins"
+                tools:text="22%"/>
+
+            <TextView
+                android:id="@+id/carbs_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="@{@string/formatted_percent(viewModel.carbsPercent)}"
+                android:textAppearance="@style/TextRegular.Carbs.14"
+                app:layout_constraintStart_toStartOf="@id/carbs"
+                app:layout_constraintEnd_toEndOf="@id/carbs"
+                app:layout_constraintBottom_toTopOf="@id/carbs"
+                tools:text="22%"/>
+
+            <TextView
+                android:id="@+id/fats_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="@{@string/formatted_percent(viewModel.fatsPercent)}"
+                android:textAppearance="@style/TextRegular.Fats.14"
+                app:layout_constraintStart_toStartOf="@id/fats"
+                app:layout_constraintEnd_toEndOf="@id/fats"
+                app:layout_constraintBottom_toTopOf="@id/fats"
+                tools:text="22%"/>
+
+            <TextView
+                android:id="@+id/protein_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bielkoviny"
+                android:layout_marginTop="@dimen/d1"
+                android:textAppearance="@style/TextRegular.Black.18"
+                app:layout_constraintStart_toStartOf="@id/proteins"
+                app:layout_constraintEnd_toEndOf="@id/proteins"
+                app:layout_constraintTop_toBottomOf="@id/proteins"/>
+
+            <TextView
+                android:id="@+id/carbs_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sacharidy"
+                android:layout_marginTop="@dimen/d1"
+                android:textAppearance="@style/TextRegular.Black.18"
+                app:layout_constraintStart_toStartOf="@id/carbs"
+                app:layout_constraintEnd_toEndOf="@id/carbs"
+                app:layout_constraintTop_toBottomOf="@id/carbs"/>
+
+            <TextView
+                android:id="@+id/fats_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tuky"
+                android:layout_marginTop="@dimen/d1"
+                android:textAppearance="@style/TextRegular.Black.18"
+                app:layout_constraintStart_toStartOf="@id/fats"
+                app:layout_constraintEnd_toEndOf="@id/fats"
+                app:layout_constraintTop_toBottomOf="@id/fats"/>
+
+            <View
+                android:id="@+id/macros_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey"
+                android:layout_marginTop="@dimen/d4"
+                app:layout_constraintTop_toBottomOf="@id/protein_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/nutrients_recycler"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+               app:layout_constraintTop_toBottomOf="@id/macros_divider"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               android:nestedScrollingEnabled="false"/>
+
+            <TextView
+                android:id="@+id/error_text"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@{viewModel.errorMessage}"
+                android:visibility="@{viewModel.isError}"
+                android:textAlignment="center"
+                android:padding="@dimen/d10"
+                android:textAppearance="@style/TextRegular.Black.18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="Some error happened!"/>
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isLoading}"
+                android:padding="@dimen/d10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isContent}"
+                app:constraint_referenced_ids="donut_view, energy, energy_weight, donut_divider,
+                proteins,fats,carbs,protein_title,fats_title,fats_percent,carbs,
+                carbs_percent,carbs_title,macros_divider,nutrients_recycler" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

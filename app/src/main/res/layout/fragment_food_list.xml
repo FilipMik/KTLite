@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.foodlist.FoodListFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.kaloricketabulky.ktlite.ui.foodlist.FoodListViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/search_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/d4"
+            android:layout_marginStart="@dimen/d3"
+            android:layout_marginEnd="@dimen/d3"
+            android:hint="@string/food_search_hint"
+            android:autofillHints="no"
+            android:inputType="text"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:text="@={viewModel.searchQuery}"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/food_list_recycler"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical"
+                android:visibility="@{!viewModel.isError}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_item_food"/>
+
+            <TextView
+                android:id="@+id/error_text"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="@{viewModel.errorMessage}"
+                android:visibility="@{viewModel.isError}"
+                android:layout_marginStart="@dimen/d4"
+                android:layout_marginEnd="@dimen/d4"
+                android:textAppearance="@style/TextRegular.Black.18"
+                tools:text="Some error happened!"/>
+
+            <TextView
+                android:id="@+id/empty_text"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="@string/food_search_empty"
+                android:visibility="@{viewModel.isEmpty}"
+                android:textAppearance="@style/TextRegular.Black.18"
+                android:layout_marginStart="@dimen/d4"
+                android:layout_marginEnd="@dimen/d4"
+                tools:text="@string/food_search_empty"/>
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isLoading}"
+                android:layout_gravity="center"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>

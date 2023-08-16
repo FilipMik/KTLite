@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextRegular" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="TextRegular.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextRegular.Black.30">
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="TextRegular.Black.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextRegular.Black.14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextRegular.Proteins">
+        <item name="android:textColor">@color/proteins_blue</item>
+    </style>
+
+    <style name="TextRegular.Proteins.14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextRegular.Carbs">
+        <item name="android:textColor">@color/carbs_yellow</item>
+    </style>
+
+    <style name="TextRegular.Carbs.14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextRegular.Fats">
+        <item name="android:textColor">@color/fats_red</item>
+    </style>
+
+    <style name="TextRegular.Fats.14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+    <style name="TextLight" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="fontFamily">@font/roboto_light</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="TextLight.Black">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextLight.Black.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextLight.Black.16">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>
