@@ -62,4 +62,8 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="TextLight.Black.16">
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

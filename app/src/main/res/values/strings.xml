@@ -2,6 +2,8 @@
     <string name="app_name">KTLite</string>
     <string name="action_settings">Settings</string>
 
+    <string name="dash">-</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="food_list_fragment_label">Zoznam potravín</string>
     <string name="food_detail_fragment_label">Detaily potraviny</string>
@@ -25,5 +27,6 @@
     <string name="hundred_grams">100g</string>
     <string name="formatted_gram">%sg</string>
     <string name="formatted_percent">%s%%</string>
+    <string name="formatted_nutrient_with_unit">%1$s %2$s</string>
 
 </resources>

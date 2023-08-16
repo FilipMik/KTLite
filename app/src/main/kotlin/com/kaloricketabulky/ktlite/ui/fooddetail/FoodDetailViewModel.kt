@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.futured.donut.DonutSection
 import com.kaloricketabulky.ktlite.domain.model.DonutSectionAndSumTuple
+import com.kaloricketabulky.ktlite.domain.model.Food
 import com.kaloricketabulky.ktlite.domain.model.FoodDetail
+import com.kaloricketabulky.ktlite.domain.model.Nutrient
 import com.kaloricketabulky.ktlite.domain.usecase.GetFoodDetailUseCase
 import com.kaloricketabulky.ktlite.tools.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +21,7 @@ class FoodDetailViewModel @Inject constructor(
     private val getFoodDetailUseCase: GetFoodDetailUseCase
 ) : ViewModel() {
 
+    // ViewState could be created to hold all values, instead of ViewModel
     val energyValue = MutableLiveData("0kcal")
 
     val proteins = MutableLiveData("0g")
@@ -30,6 +33,8 @@ class FoodDetailViewModel @Inject constructor(
     val fatsPercent = MutableLiveData("0%")
 
     val donutSectionsAndSumTuple = MutableLiveData<DonutSectionAndSumTuple>()
+
+    val nutrients: MutableLiveData<List<Nutrient>> = MutableLiveData()
 
     fun loadFoodDetail(guidFood: String) {
         getFoodDetailUseCase.init(guidFood).invoke().onEach { result ->
@@ -43,6 +48,7 @@ class FoodDetailViewModel @Inject constructor(
                         energyValue.value = it.energy
                         setMacros(it)
                         calculatePercents(it)
+                        nutrients.value = it.list
                     }
                 }
                 is Result.Error -> {

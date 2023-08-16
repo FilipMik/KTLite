@@ -2,10 +2,12 @@ package com.kaloricketabulky.ktlite.tools
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kaloricketabulky.ktlite.R
+import com.kaloricketabulky.ktlite.domain.model.Nutrient
 
 object BindingAdapters {
     @BindingAdapter("imageUrl")
@@ -32,5 +34,19 @@ object BindingAdapters {
     @JvmStatic
     fun setOnFoodItemClick(view: View, listener: View.OnClickListener) {
         view.setOnClickListener(listener)
+    }
+
+    @BindingAdapter("setNutrientValue")
+    @JvmStatic
+    fun setNutrientValue(textView: TextView, nutrient: Nutrient) {
+        if (nutrient.nutrientValue.isNullOrEmpty()) {
+            textView.text = textView.context.getString(R.string.dash)
+        } else {
+            textView.text = textView.context.getString(
+                R.string.formatted_nutrient_with_unit,
+                nutrient.nutrientValue,
+                nutrient.nutrientUnit
+            )
+        }
     }
 }

@@ -10,12 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.kaloricketabulky.ktlite.databinding.FragmentFoodDetailBinding
 import com.kaloricketabulky.ktlite.tools.observeNonNull
+import com.kaloricketabulky.ktlite.ui.fooddetail.adapter.NutrientsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FoodDetailFragment : Fragment() {
 
     private var binding: FragmentFoodDetailBinding? = null
+
+    @Inject lateinit var nutrientsAdapter: NutrientsAdapter
 
     private val foodDetailViewModel by viewModels<FoodDetailViewModel>()
 
@@ -31,6 +35,10 @@ class FoodDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val args: FoodDetailFragmentArgs by navArgs()
         foodDetailViewModel.loadFoodDetail(args.guidFood)
+
+        binding?.let {
+            it.nutrientsRecycler.adapter = nutrientsAdapter
+        }
 
         (requireActivity() as AppCompatActivity).supportActionBar?.title = args.foodName
 
@@ -49,6 +57,9 @@ class FoodDetailFragment : Fragment() {
                     it.donutView.cap = tuple.sum
                     it.donutView.submitData(tuple.donutSections)
                 }
+            }
+            nutrients.observeNonNull(viewLifecycleOwner) {
+                nutrientsAdapter.submitList(it)
             }
         }
     }

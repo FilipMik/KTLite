@@ -44,22 +44,39 @@ class GetFoodDetailUseCase @Inject constructor(
                         // Cholesterol
                         Nutrient(
                             R.string.cukry,
-                            hodnoty.cukry.hodnota, hodnoty.cukry.jednotka),
+                            hodnoty.cukry.hodnota.multiplyBy(defaultMultiplier),
+                            hodnoty.cukry.jednotka
+                        ),
                         Nutrient(
                             R.string.vlaknina,
-                            hodnoty.vlaknina.hodnota, hodnoty.vlaknina.jednotka),
+                            hodnoty.vlaknina.hodnota.multiplyBy(defaultMultiplier),
+                            hodnoty.vlaknina.jednotka
+                        ),
                         Nutrient(
                             R.string.nasytene,
-                            hodnoty.nasyceneMastneKyseliny.hodnota, hodnoty.nasyceneMastneKyseliny.jednotka),
+                            hodnoty.nasyceneMastneKyseliny.hodnota.multiplyBy(defaultMultiplier),
+                            hodnoty.nasyceneMastneKyseliny.jednotka
+                        ),
                         Nutrient(
                             R.string.poly,
-                            hodnoty.polynenasycene.hodnota, hodnoty.polynenasycene.jednotka),
+                            hodnoty.polynenasycene.hodnota.multiplyBy(defaultMultiplier),
+                            hodnoty.polynenasycene.jednotka
+                        ),
                         Nutrient(
-                            R.string.mono, hodnoty.mononenasycene.hodnota, hodnoty.mononenasycene.jednotka),
+                            R.string.mono,
+                            hodnoty.mononenasycene.hodnota.multiplyBy(defaultMultiplier),
+                            hodnoty.mononenasycene.jednotka
+                        ),
                         Nutrient(
-                            R.string.trans, hodnoty.transmastneKyseliny.hodnota, hodnoty.transmastneKyseliny.jednotka),
+                            R.string.trans,
+                            hodnoty.transmastneKyseliny.hodnota.multiplyBy(defaultMultiplier),
+                            hodnoty.transmastneKyseliny.jednotka
+                        ),
                         Nutrient(
-                            R.string.cholesterol, hodnoty.cholesterol.hodnota, hodnoty.cholesterol.jednotka),
+                            R.string.cholesterol,
+                            hodnoty.cholesterol.hodnota.multiplyBy(defaultMultiplier),
+                            hodnoty.cholesterol.jednotka
+                        ),
                     )
                 )
             }
@@ -73,6 +90,8 @@ class GetFoodDetailUseCase @Inject constructor(
     }
 
     private fun String.multiplyBy(multiplier: Int) : String {
+        if (this.isEmpty()) return ""
+
         val originalFloat = this.toFloat() * multiplier
         return String.format("%.2f", originalFloat)
     }

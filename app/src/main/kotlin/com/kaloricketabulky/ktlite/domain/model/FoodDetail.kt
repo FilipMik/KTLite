@@ -9,9 +9,3 @@ data class FoodDetail(
     val fat: String,
     val list: List<Nutrient>
 )
-
-data class Nutrient(
-    val nutrientNameId: Int,
-    val nutrientValue: String? = null,
-    val nutrientUnit: String
-)
