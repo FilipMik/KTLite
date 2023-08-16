@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingConversion
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kaloricketabulky.ktlite.R
@@ -49,4 +50,8 @@ object BindingAdapters {
             )
         }
     }
+
+    @BindingConversion
+    @JvmStatic
+    fun visibility(visibility: Boolean) = if (visibility) View.VISIBLE else View.GONE
 }

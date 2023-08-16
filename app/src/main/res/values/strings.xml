@@ -11,6 +11,7 @@
     <string name="previous">Previous</string>
 
     <string name="food_search_hint">Vyhľadaj potravinu</string>
+    <string name="food_search_empty">Zatiaľ tu nič nie je. Vyhľadaj potraviny.</string>
 
     <string name="bielkoviny">Bielkoviny</string>
     <string name="sacharidy">Sacharidy</string>

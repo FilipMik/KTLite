@@ -29,15 +29,40 @@
             android:inputType="text"
             android:text="@={viewModel.searchQuery}"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/food_list_recycler"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbars="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/list_item_food"/>
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/food_list_recycler"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:scrollbarStyle="outsideOverlay"
+                android:scrollbars="vertical"
+                android:visibility="@{!viewModel.isError}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_item_food"/>
+
+            <TextView
+                android:id="@+id/error_text"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="@{viewModel.errorMessage}"
+                android:visibility="@{viewModel.isError}"
+                android:textAppearance="@style/TextRegular.Black.18"
+                tools:text="Some error happened!"/>
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isLoading}"
+                android:layout_gravity="center"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 

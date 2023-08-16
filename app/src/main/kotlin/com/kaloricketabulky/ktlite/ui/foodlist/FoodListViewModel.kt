@@ -16,24 +16,38 @@ class FoodListViewModel @Inject constructor(
     private val getFoodsUseCase: GetFoodsUseCase
 ) : ViewModel() {
 
-    val foodList: MutableLiveData<List<Food>> = MutableLiveData()
-    val searchQuery: MutableLiveData<String> = MutableLiveData()
+    val foodList = MutableLiveData<List<Food>>()
+    val searchQuery = MutableLiveData<String>()
+
+    val isLoading = MutableLiveData(false)
+    val isError = MutableLiveData(false)
+    val errorMessage = MutableLiveData("")
 
     fun getFoodList(query: String) {
         getFoodsUseCase.init(query).invoke().onEach { result ->
             when (result) {
                 is Result.Loading -> {
-                    result
+                    isLoading.value = true
+                    isError.value = false
+                    errorMessage.value = ""
                 }
                 is Result.Success -> {
+                    isLoading.value = false
+                    isError.value = false
                     result.data?.let {
                         foodList.value = it
                     }
                 }
                 is Result.Error -> {
-                    result
+                    errorMessage.value = result.message
+                    isError.value = true
+                    isLoading.value = false
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun onEmptyQuery() {
+        foodList.value = listOf()
     }
 }

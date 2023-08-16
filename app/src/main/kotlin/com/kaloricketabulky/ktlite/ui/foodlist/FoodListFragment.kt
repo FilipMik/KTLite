@@ -69,7 +69,11 @@ class FoodListFragment : Fragment(), FoodListView {
     private fun observeSearchChange() {
         foodListViewModel.apply {
             searchQuery.observeNonNull(viewLifecycleOwner) {
-                getFoodList(it)
+                if (it.isEmpty()) {
+                    onEmptyQuery()
+                } else {
+                    getFoodList(it)
+                }
             }
         }
     }
