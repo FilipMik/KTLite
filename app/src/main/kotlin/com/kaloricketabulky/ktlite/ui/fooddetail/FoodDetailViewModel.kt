@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.futured.donut.DonutSection
 import com.kaloricketabulky.ktlite.domain.model.DonutSectionAndSumTuple
-import com.kaloricketabulky.ktlite.domain.model.Food
 import com.kaloricketabulky.ktlite.domain.model.FoodDetail
 import com.kaloricketabulky.ktlite.domain.model.Nutrient
 import com.kaloricketabulky.ktlite.domain.usecase.GetFoodDetailUseCase
@@ -36,13 +35,22 @@ class FoodDetailViewModel @Inject constructor(
 
     val nutrients: MutableLiveData<List<Nutrient>> = MutableLiveData()
 
+    val isLoading = MutableLiveData(true)
+    val isError = MutableLiveData(false)
+    val isContent = MutableLiveData(false)
+    val errorMessage = MutableLiveData("")
+
     fun loadFoodDetail(guidFood: String) {
         getFoodDetailUseCase.init(guidFood).invoke().onEach { result ->
             when (result) {
                 is Result.Loading -> {
-                    result
+                    isError.value = false
+                    isLoading.value = true
                 }
                 is Result.Success -> {
+                    isLoading.value = false
+                    isContent.value = true
+
                     result.data?.let {
                         donutSectionsAndSumTuple.value = createDonutSectionAndSumTuple(it)
                         energyValue.value = it.energy
@@ -52,7 +60,9 @@ class FoodDetailViewModel @Inject constructor(
                     }
                 }
                 is Result.Error -> {
-                    result
+                    errorMessage.value = result.message
+                    isError.value = true
+                    isLoading.value = false
                 }
             }
         }.launchIn(viewModelScope)

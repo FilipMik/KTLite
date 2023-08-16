@@ -193,6 +193,41 @@
                app:layout_constraintEnd_toEndOf="parent"
                android:nestedScrollingEnabled="false"/>
 
+            <TextView
+                android:id="@+id/error_text"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@{viewModel.errorMessage}"
+                android:visibility="@{viewModel.isError}"
+                android:textAlignment="center"
+                android:padding="@dimen/d10"
+                android:textAppearance="@style/TextRegular.Black.18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="Some error happened!"/>
+
+            <ProgressBar
+                android:id="@+id/loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isLoading}"
+                android:padding="@dimen/d10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isContent}"
+                app:constraint_referenced_ids="donut_view, energy, energy_weight, donut_divider,
+                proteins,fats,carbs,protein_title,fats_title,fats_percent,carbs,
+                carbs_percent,carbs_title,macros_divider,nutrients_recycler" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
