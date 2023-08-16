@@ -10,6 +10,10 @@
 
     <string name="food_search_hint">Vyhľadaj potravinu</string>
 
+    <string name="bielkoviny">Bielkoviny</string>
+    <string name="sacharidy">Sacharidy</string>
+    <string name="tuky">Tuky</string>
+
     <string name="cukry">Cukry</string>
     <string name="vlaknina">Vláknina</string>
     <string name="nasytene">Nasýtené mastné kyseliny</string>
@@ -19,5 +23,7 @@
     <string name="cholesterol">Cholesterol</string>
 
     <string name="hundred_grams">100g</string>
+    <string name="formatted_gram">%sg</string>
+    <string name="formatted_percent">%s%%</string>
 
 </resources>

@@ -7,4 +7,8 @@
     <color name="dark_grey">#262729</color>
     <color name="azure">#0898e1</color>
     <color name="gunmetal">#1A575d61</color>
+
+    <color name="proteins_blue">#00ddff</color>
+    <color name="carbs_yellow">#ffc403</color>
+    <color name="fats_red">#f2021a</color>
 </resources>
