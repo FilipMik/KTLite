@@ -21,6 +21,7 @@ class FoodListViewModel @Inject constructor(
 
     val isLoading = MutableLiveData(false)
     val isError = MutableLiveData(false)
+    val isEmpty = MutableLiveData(true)
     val errorMessage = MutableLiveData("")
 
     fun getFoodList(query: String) {
@@ -29,11 +30,13 @@ class FoodListViewModel @Inject constructor(
                 is Result.Loading -> {
                     isLoading.value = true
                     isError.value = false
+                    isEmpty.value = false
                     errorMessage.value = ""
                 }
                 is Result.Success -> {
                     isLoading.value = false
                     isError.value = false
+                    isEmpty.value = false
                     result.data?.let {
                         foodList.value = it
                     }
@@ -42,6 +45,7 @@ class FoodListViewModel @Inject constructor(
                     errorMessage.value = result.message
                     isError.value = true
                     isLoading.value = false
+                    isEmpty.value = false
                 }
             }
         }.launchIn(viewModelScope)
@@ -49,5 +53,7 @@ class FoodListViewModel @Inject constructor(
 
     fun onEmptyQuery() {
         foodList.value = listOf()
+        isError.value = false
+        isEmpty.value = true
     }
 }

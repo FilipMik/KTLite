@@ -54,8 +54,23 @@
                 android:gravity="center"
                 android:text="@{viewModel.errorMessage}"
                 android:visibility="@{viewModel.isError}"
+                android:layout_marginStart="@dimen/d4"
+                android:layout_marginEnd="@dimen/d4"
                 android:textAppearance="@style/TextRegular.Black.18"
                 tools:text="Some error happened!"/>
+
+            <TextView
+                android:id="@+id/empty_text"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="@string/food_search_empty"
+                android:visibility="@{viewModel.isEmpty}"
+                android:textAppearance="@style/TextRegular.Black.18"
+                android:layout_marginStart="@dimen/d4"
+                android:layout_marginEnd="@dimen/d4"
+                tools:text="@string/food_search_empty"/>
 
             <ProgressBar
                 android:id="@+id/loading"
