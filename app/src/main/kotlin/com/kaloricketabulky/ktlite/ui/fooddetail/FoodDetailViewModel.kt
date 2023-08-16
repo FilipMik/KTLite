@@ -1,23 +1,26 @@
 package com.kaloricketabulky.ktlite.ui.fooddetail
 
-import android.graphics.Color
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.futured.donut.DonutSection
+import com.kaloricketabulky.ktlite.R
 import com.kaloricketabulky.ktlite.domain.model.DonutSectionAndSumTuple
 import com.kaloricketabulky.ktlite.domain.model.FoodDetail
 import com.kaloricketabulky.ktlite.domain.model.Nutrient
 import com.kaloricketabulky.ktlite.domain.usecase.GetFoodDetailUseCase
 import com.kaloricketabulky.ktlite.tools.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
 class FoodDetailViewModel @Inject constructor(
-    private val getFoodDetailUseCase: GetFoodDetailUseCase
+    private val getFoodDetailUseCase: GetFoodDetailUseCase,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     // ViewState could be created to hold all values, instead of ViewModel
@@ -87,17 +90,17 @@ class FoodDetailViewModel @Inject constructor(
         val sectionList = listOf(
             DonutSection(
                 name = "proteins",
-                color = Color.parseColor("#00ddff"),
+                color = context.getColor(R.color.proteins_blue),
                 amount = foodDetail.protein.toFloat()
             ),
             DonutSection(
                 name = "fats",
-                color = Color.parseColor("#f2021a"),
+                color = context.getColor(R.color.fats_red),
                 amount = foodDetail.fat.toFloat()
             ),
             DonutSection(
                 name = "carbs",
-                color = Color.parseColor("#ffc403"),
+                color = context.getColor(R.color.carbs_yellow),
                 amount = foodDetail.carbs.toFloat()
             )
         )
